@@ -1,0 +1,35 @@
+<?php
+class Login  extends Model {
+
+    public function validate(){
+        $errors = [];
+
+        if(!$this->email){
+            $errors['email'] = 'Campo obrigatório, por favor preencha!';
+        }
+
+        if(!$this->password){
+            $errors['password'] = 'Campo obrigatório, por favor preencha!';
+        }
+
+        if(count($errors) > 0 ){
+            throw new ValidationException($errors);
+        }
+    }
+     
+    public function checkLogin(){
+        $this -> validate();
+        $user = User::getOne(['email' => $this->email]);
+        if($user){
+            if($user->end_date){
+                throw new AppException('Usuário saiu da empresa!'); 
+            }
+
+
+            if(password_verify($this->password, $user->password)){
+                   return $user;
+            }
+        }
+        throw new AppException('Usuário e/ou Senha inválidos.');
+    }
+}

@@ -1,0 +1,25 @@
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(100, 164, 165, 0.993);
+}
+
+.form-login {
+    flex-basis: 450px;
+}
+
+.card-header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.8rem;
+}
+
+
+.card-footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
